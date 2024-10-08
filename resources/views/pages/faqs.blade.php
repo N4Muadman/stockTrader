@@ -17,7 +17,7 @@
         <div class="faqs-content">
             <div class="container">
                 <div class="row justify-content-around">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-3 mb-5">
                         <div class="catagory">
                             @foreach ($categories->unique('category_id') as $it )
                                 @if($it->category_faqs)

@@ -97,9 +97,9 @@
     <div class="philosophy-introduce">
         <div class="container">
             <div class="row justify-content-evenly">
-                <div class="col-12 col-md-5 d-flex flex-column align-md-items-end align-items-start justify-content-around">
-                    <h1 class="text-center text-md-end w-75">Triết lý đầu tư của chúng tôi</h1>
-                    <p class="text-md-end w-75 text-center">StockTraders chú trọng giao dịch lướt sóng hơn là đầu tư cổ phiếu cơ bản trung dài hạn</p>
+                <div class="col-12 col-md-5 d-flex flex-column align-md-items-end align-items-center justify-content-around">
+                    <h1 class="text-center mb-3 text-md-end w-md-75">Triết lý đầu tư của chúng tôi</h1>
+                    <p class="text-md-end mb-3 w-md-75 text-center">StockTraders chú trọng giao dịch lướt sóng hơn là đầu tư cổ phiếu cơ bản trung dài hạn</p>
                     <a href="{{ route('investment_philosophy') }}" class="btn text-center text-md-start btn-all">Tìm hiểu thêm</a>
                 </div>
                 <div class="col-12 col-md-5">
@@ -126,14 +126,14 @@
                     <img src="{{ asset("assets/img/gioithieu_3.svg") }}" width="90%" alt="">
                 </div>
                 <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
-                    <h1>StockTraders tạo sự khác biệt</h1>
-                    <p>StockTraders Tự hòa là hệ thống đầu tiền ở Việt Nam xác định được chân sóng và đỉnh sóng của thị
+                    <h1 class="mb-4">StockTraders tạo sự khác biệt</h1>
+                    <p  class="mb-4">StockTraders Tự hòa là hệ thống đầu tiền ở Việt Nam xác định được chân sóng và đỉnh sóng của thị
                         trường và khuyến nghị mua bán cổ phiếu tự động bằng Robot.
                     </p>
-                    <div>
+                    <div  class="mb-4">
                         <a href="{{ route('investment_philosophy') }}" class="btn btn-all">Tìm hiểu thêm</a>
                     </div>
-                    <p>Hệ thống phân tích ứng dụng bằng công nghệ AI, phân tích kỹ thuật kết hợp với Big Data.</p>
+                    <p  class="mb-4">Hệ thống phân tích ứng dụng bằng công nghệ AI, phân tích kỹ thuật kết hợp với Big Data.</p>
                     <p>Chiến lược giản ngân tự động, nhà đầu tư không cần mất nhiều thời gian để theo dõi thị trường</p>
                     {{-- <div>
                         <button></button>
@@ -146,9 +146,9 @@
     </div>
     <div class="customer">
         <div class="container">
-            <h1 class="text-center">Khách hàng và StockTraders</h1>
+            <h1 class="text-center mb-5">Khách hàng và StockTraders</h1>
             <div class="row">
-                <div class="col-12 col-md-6 d-flex">
+                <div class="col-12 col-md-6 d-md-flex mb-5 mb-md-0">
                     <img src="{{ asset('assets/img/customer.png') }}" class="img-customer" alt="">
                     <div class="text-customer">
                         Đã sử dụng StockTraders thời gian dài nhận thấy hệ thống giúp
@@ -158,7 +158,7 @@
                           tâm lý tốt hơn rất nhiều
                     </div>
                 </div>
-                <div class="col-12 col-md-6 d-flex">
+                <div class="col-12 col-md-6 d-md-flex">
                     <img src="{{ asset('assets/img/customer2.png') }}"  class="img-customer" alt="">
                     <div class="text-customer">
                         Sau khi cắt lỗ bởi các sự kiện HD981, Đại Án Ngân Hàng,...

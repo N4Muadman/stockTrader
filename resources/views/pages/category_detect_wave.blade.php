@@ -26,12 +26,12 @@
         <div class="meaning text-center">
             <div class="container">
                 <h1 class="mb-5">Ý nghĩa danh mục dò sóng</h1>
-                <p class="fs-5 mb-4 m-auto w-75">
+                <p class="fs-5 mb-4 m-auto w-md-75 ">
                     Danh mục dò sóng là danh mục dùng để xác định sóng thị trường gồm 368
                     mã cổ phiếu đạt tiêu chí về thanh khoản trên 3 sàn HSX, HNX và UPCOM.
                     Lưu ý: Danh mục này không có mục đích khuyến nghị mua hay bán cổ phiếu.
                 </p>
-                <p class="fs-5 m-auto w-75">
+                <p class="fs-5 m-auto w-md-75">
                     Danh mục này có số lượng không cố định mà thay đổi theo tình hình biến
                     động của thị trường từng giai đoạn khác nhau. Số lượng cổ phiếu sẽ tự động
                     được thêm vào hoặc bị loại ra theo tiêu chí hệ thống để đảm bảo danh mục đủ
@@ -74,7 +74,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="reliable_density w-75">
+                    <div class="reliable_density w-md-75">
                         <p class="fs-5 mb-5">Tỉ trọng tin cậy</p>
                         <p class="fs-5">Biểu đồ tin cậy này chỉ có ý nghĩa tại phiên xác nhận chân sóng khi số lượng cổ phiếu
                              Mua đạt từ 25 mã trở lên. Tại phiên có từ 25 mã Mua trở lên mà độ tin cậy 100% chiếm

@@ -82,14 +82,14 @@
                             <canvas id="myDonutChart" width="400" height="400"></canvas>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 fs-5">
+                    <div class="col-12 col-md-6 fs-5 mt-4 mt-md-0">
                         <p class="fw-bold mb-4">Hệ thống xác định chân sóng dựa trên triết lý đầu tư của StockTraders</p>
                         <p class="mb-4">Hệ thống StockTraders đã chinh phục được giả định cơ sở đầu tiên của Phân
                             tích kỹ thuật : “Giá dịch chuyển theo xu hướng” mà trước đó chưa có tổ chức
                             nào có thể chỉ ra được xu hướng bắt đầu khi nào và khi nào kết thúc.</p>
                         <p class="mb-4">Hệ thống có thể dự đoán chính xác ngay trong phiên giao dịch các sóng sau:</p>
-                        <div class="row text-center justify-content-around mb-4">
-                            <div class="col-12 col-md-5 define_waves-profitable">
+                        <div class="row text-center justify-content-around mb-4 p-4 p-md-0">
+                            <div class="col-12 col-md-5 define_waves-profitable mb-4 mb-md-0">
                                 <p class="fw-bold mb-3">1. Chân sóng lớn:</p>
                                 <p class=" mb-3">Sóng có thời gian tăng giá kéo dài từ 2-3 tháng hoặc có khi là 6 tháng - 1 năm.</p>
                                 <p>Suất sinh lời <span style="color: #E3BA3C" class="fs-1 d-block">40%-50%</span> /Sóng</p>
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
-                        <p class="fs-1 mb-4">Sóng Covid-19</p>
+                        <p class="fs-1 mb-4 mt-4 mt-md-0">Sóng Covid-19</p>
                         <p class="mb-4">
                             Giai đoạn gần cuối tháng 03/2020 tình trạng Covid-19 diễn ra nghiêm trọng và
                             chỉ số VNindex rơi về mốc 650 phiên 24/03 (Biều đồ 1).

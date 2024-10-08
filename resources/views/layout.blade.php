@@ -15,10 +15,20 @@
 
 </head>
 <body>
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
     <header>
-        <div class="header">
+        <div class="header d-none d-md-block">
             <div class="container">
-                <div class="row d-flex ">
+                <div class="row">
                     <div class="col-sm-3">
                         <img src="{{ asset('assets/img/logo.jpg') }}" alt="" width="120" height="60" srcset="">
                     </div>
@@ -28,13 +38,29 @@
                                 <li><a href="#" onclick="clickMenu(this)" class="menu-item" id="company">Công ty <i class="fa-solid fa-chevron-right"></i></a></li>
                                 <li><a href="#" onclick="clickMenu(this)" class="menu-item" id="tool">Công cụ <i class="fa-solid fa-chevron-right"></i></a></li>
                                 <li><a href="#" onclick="clickMenu(this)" class="menu-item" id="collabrate">Cộng tác <i class="fa-solid fa-chevron-right"></i></a></li>
-                                <li><a href="">Mua dịch vụ</a></li>
+                                <li><a href="">Mua dịch vụ <i class="fa-solid fa-chevron-right"></i></a></li>
+                                <li><a href="{{ route('news') }}">Tin Tức</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-3 d-flex flex-column align-items-end">
                         <div class="contact"><i class="fa-solid fa-headphones me-3"></i>Hotline: 0983868386</div>
-                        <div class="login mt-2"><a href="#" class="btn me-3 btn-login" onclick="dialogformlogin(this)" data-id="login" data-bs-toggle="modal" data-bs-target="#Login">Đăng nhập</a><a href="#" data-id="register" onclick="dialogformlogin(this)" data-bs-toggle="modal" data-bs-target="#Login" class="btn btn-register">Đăng ký</a></div>
+                        @auth()
+                            <div class="d-flex" >
+                                <div class="me-3 text-end">
+                                    <p style="font-size: 14px;">{{ Auth::user()->email }}</p>
+                                    <a style="font-size: 14px; color: #000" class="a-hover" href="{{ route('logout') }}">Đăng xuất</a>
+                                </div>
+                                <a href="">
+                                    <img src="{{ asset('assets/img') .'/' .Auth::user()->img }}" width="40px" style="border-radius: 20px" height="40px" alt="">
+                                </a>
+                            </div>
+                        @else
+                            <div class="login mt-2">
+                                <a href="#" class="btn me-3 btn-login" onclick="dialogformlogin(this)" data-id="login" data-bs-toggle="modal" data-bs-target="#Login">Đăng nhập</a>
+                                <a href="#" data-id="register" onclick="dialogformlogin(this)" data-bs-toggle="modal" data-bs-target="#Login" class="btn btn-register">Đăng ký</a>
+                            </div>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -51,8 +77,8 @@
                 <li><a href="{{ route('detect_waves') }}">Dòng sóng</a></li>
                 <li><a href="{{ route('signal') }}">Tín hiệu</a></li>
                 <li><a href="{{ route('sector_rotation') }}">Tổng quan sóng ngành</a></li>
-                <li><a href="">Nhận định</a></li>
-                <li><a href="">Biểu đồ</a></li>
+                {{-- <li><a href="">Nhận định</a></li>
+                <li><a href="">Biểu đồ</a></li> --}}
             </ul>
         </div>
         <div class="dropdown-menu-content col-sm-12 d-flex align-items-center justify-content-center" >
@@ -62,8 +88,51 @@
                 <li><a href="">CTCK</a></li>
             </ul>
         </div>
+        <div class="header-mobile d-md-none">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <img src="{{ asset('assets/img/logo.jpg') }}" alt="" width="120" height="60" srcset="">
+                    <div class="toggle-btn">
+                        <a href="#" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <div class="content">
+        <div class="dropdown-menu-mobile d-none" id="dropdown-menu-mobile">
+            <ul>
+                <li>
+                    <a href="#" class="" onclick="dialogformlogin(this)" data-id="login" data-bs-toggle="modal" data-bs-target="#Login">Đăng nhập</a>
+                </li>
+                <li>
+                    <a href="#" data-id="register" onclick="dialogformlogin(this)" data-bs-toggle="modal" data-bs-target="#Login">Đăng ký</a>
+                </li>
+                <li>
+                    <a href="#" id="company-mobile" onclick="clickMenu(this)">Công ty</a> <i class="fa-solid fa-chevron-up icon text-end" id="icon-company-mobile"></i>
+                    <div class="submenu" id="submenu-company-mobile">
+                        <ul>
+                            <li><a href="{{ route('introduce') }}">Giới thiệu</a></li>
+                            <li><a href="{{ route('investment_philosophy') }}">Triết lý đầu tư</a></li>
+                            <li><a href="{{ route('faqs') }}">Giải đáp thắc mắc</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" id="tool-mobile" onclick="clickMenu(this)">Công cụ</a> <i class="fa-solid fa-chevron-up icon text-end" id="icon-tool-mobile"></i>
+                    <div class="submenu" id="submenu-tool-mobile">
+                        <ul>
+                            <li><a href="{{ route('detect_waves') }}">Dòng sóng</a></li>
+                            <li><a href="{{ route('signal') }}">Tín hiệu</a></li>
+                            <li><a href="{{ route('sector_rotation') }}">Tổng quan sóng ngành</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="{{ route('news') }}">Tin tức</a>
+                </li>
+            </ul>
+        </div>
         @yield('content')
     </div>
     <footer>
@@ -166,9 +235,12 @@
     <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl justify-content-center modal-dialog-centered">
             <div class="modal-content">
+                <div class="modal-head d-md-none">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="float: right; margin: 12px 12px 0 0 " aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-6 login-left text-center text-white">
+                        <div class="col-sm-6 d-md-block d-none login-left text-center text-white">
                             <div class="header-login-left">
                                 <p>StockTraders Tự Hào Là Đơn Vị Tiên Phong</p>
                                 <p>Xác Định Được Sóng Thị Trường Trước 1</p>
@@ -186,23 +258,27 @@
                             </div>
                         </div>
                         <div class="col-sm-5 login-right">
-                            <div class="form-login">
+                            <div class="form-login p-4">
                                 <div class="header-login-right mb-5">
                                     <a href="#" class="me-3 login-active" id="title-login" onclick="dialogformlogin(this)" data-id="login">ĐĂNG NHẬP TÀI KHOẢN</a>
                                     <a href="#" data-id="register" id="title-register" onclick="dialogformlogin(this)">TẠO TÀI KHOẢN MỚI</a>
                                 </div>
                                 <div class="form-login-content" id="form-login">
-                                    <form action="" method="post">
+                                    <form action="{{ route('login') }}" method="post">
+                                        @csrf
                                         <div class="mb-4">
                                             <label class="form-label">Tên Đăng Nhập</label>
-                                            <input type="text" autocomplete="username" class="form-control" name="username" placeholder="Tên đăng nhập hoặc Email" required>
+                                            <input type="email" autocomplete="email" value="{{ old('email') }}" class="form-control" name="email" placeholder="Tên đăng nhập hoặc Email" required>
                                         </div>
                                         <div class="mb-4">
                                             <label for="" class="form-label">Mật khẩu</label>
-                                            <input type="password" autocomplete="current-password" class="form-control" name="password" placeholder="********" required>
+                                            <input type="password" autocomplete="current-password" class="form-control @if (session()->has('errorLogin')) is-invalid @endif" name="password" placeholder="********" required>
+                                            @if (session()->has('errorLogin'))
+                                                <p class="text-danger text-center mt-2">{{ session('errorLogin') }}</p>
+                                            @endif
                                         </div>
                                         <div class="mb-4">
-                                            <input type="checkbox" class="remember"  name="remember" >
+                                            <input type="checkbox" class="remember" autocomplete="remember" name="remember" >
                                             <label for="" class="form-label ">Ghi Nhớ mật khẩu</label>
                                         </div>
                                         <div class="mb-5">
@@ -214,32 +290,39 @@
                                     </form>
                                 </div>
                                 <div class="form-register-content" id="form-register">
-                                    <form action="" method="post">
+                                    <form action="{{ route('register') }}" method="post">
+                                        @csrf
                                         <div class="mb-3">
                                             <label class="form-label">Họ tên</label>
-                                            <input type="text" autocomplete="name" class="form-control" name="fullname" placeholder="Họ và tên đầy đủ" required>
+                                            <input type="text" autocomplete="name" class="form-control" name="full_name" placeholder="Họ và tên đầy đủ" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Email</label>
-                                            <input type="email" autocomplete="email" class="form-control" name="email" placeholder="Email của quý khách có thể dùng đăng nhập" required>
+                                            <input type="email" autocomplete="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email của quý khách có thể dùng đăng nhập" required>
+                                            @error('email')
+                                                <p class="text-danger text-center mt-2">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Số điện thoại</label>
-                                            <input type="tel" autocomplete="tel" class="form-control" name="phone_number" placeholder="Sdt sẽ được dùng để gửi mã OTP xác nhận và đăng nhập" required>
+                                            <input type="tel" autocomplete="tel" class="form-control" name="phone_number" placeholder="Số điện thoại" required>
                                         </div>
                                         <div class="mb-3">
                                             <div class="">
                                                 <label for="" class="form-label">Mật khẩu *</label>
-                                                <input type="password" autocomplete="new-password" class="form-control" name="password" placeholder="*********"required>
+                                                <input type="password" autocomplete="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="*********"required>
                                             </div>
                                             <div class="">
                                                 <label for="" class="form-label">Xác nhân mật khẩu </label>
-                                                <input type="password" class="form-control" autocomplete="new-password" name="comfirm_password" placeholder="*********" required>
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="new-password" name="password_confirmation" placeholder="*********" required>
+                                                @error('password')
+                                                    <p class="text-danger text-center mt-2">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">ID tư vấn viên</label>
-                                            <input type="text" class="form-control" name="" placeholder="ID tư vấn viên cho bạn. không bắt buộc">
+                                            <input type="text" class="form-control" name="employee_id" placeholder="ID tư vấn viên cho bạn. không bắt buộc">
                                         </div>
                                         <div>
                                             <input type="submit" class="form-control btn btn-login-submit mb-3" value="Tạo tài khoản">
@@ -249,7 +332,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-1 d-none d-md-block">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" style="float: right; margin: 12px 12px 0 0 " aria-label="Close"></button>
                         </div>
                     </div>
@@ -259,5 +342,38 @@
     </div>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    @if (session()->has('errorLogin') || session()->has('successRegister'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var loginButton = document.querySelector('.btn-login');
+
+                var modalId = loginButton.getAttribute('data-bs-target');
+                var modal = document.querySelector(modalId);
+
+                if (modal) {
+                    var bootstrapModal = new bootstrap.Modal(modal);
+                    bootstrapModal.show();
+                }
+                dialogformlogin(loginButton);
+            });
+        </script>
+    @endif
+    @error('password')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var loginButton = document.querySelector('.btn-register');
+
+                var modalId = loginButton.getAttribute('data-bs-target');
+                var modal = document.querySelector(modalId);
+
+                if (modal) {
+                    var bootstrapModal = new bootstrap.Modal(modal);
+                    bootstrapModal.show();
+                }
+                dialogformlogin(loginButton);
+            });
+        </script>
+    @enderror
 </body>
 </html>

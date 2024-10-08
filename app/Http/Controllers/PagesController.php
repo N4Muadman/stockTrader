@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faqs;
+use App\Models\News;
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\alert;
 
 class PagesController extends Controller
 {
@@ -630,5 +633,28 @@ class PagesController extends Controller
             ],
         ];
         return view('pages.sector_rotation_detail', compact('sector', 'wave_statistics', 'sectorOutstanding'));
+    }
+
+    public function news(Request $request){
+        $news = News::with('user')->where('show', 1);
+
+        if($request->search){
+            $news->whereRaw('MATCH(title, content) AGAINST(? IN BOOLEAN MODE)', ['"' . addslashes($request->search) . '"']);
+        }
+        $news = $news->OrderBy('created_at', 'desc')->paginate(9);
+
+        return view('pages.news', compact('news'));
+    }
+
+    public function newsDetail($slug){
+        $newsDetail = News::with('user')->where('slug', $slug)->where('show', 1)->first();
+        if(!$newsDetail){
+            return alert(404);
+        }
+        $newsDetail->update([
+            'view' => $newsDetail->view + 1,
+        ]);
+        $news = News::where('show', 1)->where('id', '!=' ,$newsDetail->id);
+        return view('pages.news-detail', compact('newsDetail', 'news'));
     }
 }

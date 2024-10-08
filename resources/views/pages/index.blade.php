@@ -45,15 +45,15 @@
                     loại bỏ yếu tố cảm xúc
                 </p>
             </div>
-            <div class="icon d-flex justify-content-center">
-                <div class="d-flex me-5">
+            <div class="icon d-flex flex-column flex-md-row align-items-center justify-content-md-center">
+                <div class="d-flex me-md-5 mb-4 mb-md-0">
                     <img src="{{ asset('assets/img/dugout.svg') }}" alt="" srcset="">
                     <div>
                         <p class="header-icon">Đã Phát Hiện Được</p>
                         <p ><span class="number">54</span> <span>Đợt Sóng Thị Trường</span></p>
                     </div>
                 </div>
-                <div class="d-flex me-5">
+                <div class="d-flex me-md-5 mb-4 mb-md-0">
                     <img src="{{ asset('assets/img/accuracy.svg') }}" alt="" srcset="">
                     <div >
                         <p class="header-icon">Độ chính xác</p>
@@ -177,7 +177,7 @@
                               dịch cho nhà đầu tư được tin tưởng bởi hơn 10.000 khách hàng và 20 đối tác.
                         </p>
                     </div>
-                    <div class="btn-philosophy">
+                    <div class="btn-philosophy text-center m-4 m-md-0 text-md-start">
                         <a href="#" class="btn btn-all">Tìm hiểu thêm</a>
                     </div>
                 </div>
